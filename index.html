@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniela Sousa da Rocha — Consultora em Estratégia Digital & Marcas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────
+   TOKENS — Verde Musgo Premium
+───────────────────────────────────── */
+:root {
+  --white:   #FFFFFF;
+  --off:     #F4F6F4;        /* cinza esverdeado suave */
+  --ink:     #111827;        /* grafite textos principais */
+  --mid:     #6B7280;        /* cinza textos secundários */
+  --soft:    #9CA3AF;        /* placeholder / muted */
+  --rule:    #E5E7EB;        /* bordas suaves */
+  --moss:    #2F3E34;        /* verde musgo protagonista */
+  --moss-dk: #233029;        /* hover do verde */
+  --accent:  #2F3E34;        /* links usam verde */
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'DM Sans', -apple-system, Helvetica, sans-serif;
+  --max:     1120px;
+  --side:    clamp(1.5rem, 6vw, 7rem);
+}
+
+/* ─────────────────────────────────────
+   RESET
+───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─────────────────────────────────────
+   NAV
+───────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--side);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav__logo {
+  font-family: var(--sans);
+  font-size: .82rem; font-weight: 500; letter-spacing: .04em;
+  color: var(--ink);
+}
+.nav__links {
+  display: flex; align-items: center; gap: 2.5rem; list-style: none;
+}
+.nav__links a {
+  font-size: .78rem; font-weight: 400; color: var(--mid);
+  letter-spacing: .02em; transition: color .2s;
+}
+.nav__links a:hover { color: var(--ink); }
+.nav__cta {
+  font-size: .75rem !important; font-weight: 500 !important; color: var(--ink) !important;
+  border: 1px solid var(--rule); border-radius: 2rem;
+  padding: .4rem 1rem !important;
+  transition: background .2s, border-color .2s !important;
+}
+.nav__cta:hover { background: var(--off) !important; border-color: #C8D4CA !important; }
+
+.nav__toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer;
+}
+.nav__toggle span { display: block; width: 20px; height: 1px; background: var(--ink); }
+
+
+/* ─────────────────────────────────────
+   WRAPPER
+───────────────────────────────────── */
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--side);
+  padding-right: var(--side);
+}
+
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+.hero {
+  padding-top: 56px; /* nav height */
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  background: var(--moss);       /* verde musgo protagonista */
+}
+.hero__left {
+  padding: 6rem var(--side) 6rem 0;
+  max-width: 560px;
+  justify-self: end;
+}
+.hero__eyebrow {
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.5); font-weight: 500;
+  margin-bottom: 2.25rem;
+}
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  font-weight: 400; line-height: 1.14; letter-spacing: -.015em;
+  color: var(--white);           /* branco sobre verde */
+  margin-bottom: 1.75rem;
+}
+.hero__sub {
+  font-size: 1rem; font-weight: 300; line-height: 1.85;
+  color: rgba(255,255,255,.65); max-width: 440px;
+  margin-bottom: 2.75rem;
+}
+.hero__actions { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+
+/* Botão primário: branco com texto verde */
+.btn--primary {
+  font-family: var(--sans);
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+  color: var(--moss); background: var(--white);
+  padding: .85rem 2.2rem; border-radius: 2rem;
+  transition: background .2s, color .2s;
+  display: inline-block;
+}
+.btn--primary:hover { background: var(--off); color: var(--moss-dk); }
+
+/* Botão outline branco no hero */
+.hero__actions .btn--link {
+  font-size: .82rem; font-weight: 400;
+  color: rgba(255,255,255,.75);
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  transition: color .2s, border-color .2s;
+}
+.hero__actions .btn--link:hover {
+  color: var(--white);
+  border-color: rgba(255,255,255,.7);
+}
+
+/* btn--link fora do hero (resto do site) */
+.btn--link {
+  font-size: .82rem; color: var(--moss); font-weight: 400;
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.btn--link:hover { border-color: var(--moss); }
+
+.hero__right {
+  height: 100%;
+  background: rgba(0,0,0,.12);   /* escurecimento sutil sobre o verde */
+  display: flex; align-items: flex-end; justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.hero__photo {
+  width: 88%;
+  max-width: 440px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+
+/* ─────────────────────────────────────
+   SHARED SECTION STRUCTURE
+───────────────────────────────────── */
+.section { padding: 7rem 0; }
+.section--off { background: var(--off); }   /* #F4F6F4 esverdeado suave */
+
+.section__rule {
+  width: 100%; height: 1px; background: var(--rule);
+  margin-bottom: 4rem;
+}
+
+.section__label {
+  font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--moss); font-weight: 500; margin-bottom: 1.25rem;   /* verde musgo nos labels */
+}
+.section__title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 400; line-height: 1.18; letter-spacing: -.015em;
+  color: var(--ink); margin-bottom: 1.75rem;
+}
+.section__sub {
+  font-size: .95rem; font-weight: 300; line-height: 1.85; color: var(--mid);
+}
+
+
+/* ─────────────────────────────────────
+   SOBRE
+───────────────────────────────────── */
+.sobre__body {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+  margin-top: 3.5rem;
+}
+.sobre__p {
+  font-size: .95rem; line-height: 1.9; color: var(--mid); font-weight: 300;
+}
+.sobre__p + .sobre__p { margin-top: 1.25rem; }
+.sobre__aside {
+  padding-top: .25rem;
+}
+.sobre__fact {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.sobre__fact:first-child { border-top: 1px solid var(--rule); }
+.sobre__fact-val {
+  font-family: var(--serif);
+  font-size: 2.6rem; font-weight: 400; color: var(--moss);   /* verde musgo nos números */
+  letter-spacing: -.02em; line-height: 1;
+}
+.sobre__fact-label {
+  font-size: .75rem; color: var(--soft); letter-spacing: .06em;
+  text-transform: uppercase; margin-top: .4rem; font-weight: 500;
+}
+
+
+/* ─────────────────────────────────────
+   O QUE EU FAÇO
+───────────────────────────────────── */
+.faco__sub {
+  font-size: .95rem; font-weight: 300; line-height: 1.8; color: var(--mid);
+  max-width: 560px; margin-bottom: 4.5rem;
+}
+.faco__grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.faco__item {
+  background: var(--white);
+  padding: 2.5rem 2rem 2.25rem;
+  transition: background .2s, border-left-color .2s;
+  border-left: 2px solid transparent;
+}
+.faco__item:hover { background: var(--off); border-left-color: var(--moss); }
+.faco__num {
+  font-family: var(--serif);
+  font-size: 1rem; color: var(--moss); font-weight: 400;   /* verde musgo nos números dos serviços */
+  margin-bottom: 1.5rem; display: block;
+}
+.faco__item-title {
+  font-size: .9rem; font-weight: 500; color: var(--ink);
+  line-height: 1.4; margin-bottom: .6rem;
+}
+.faco__item-desc {
+  font-size: .82rem; color: var(--mid); line-height: 1.75; font-weight: 300;
+}
+
+
+/* ─────────────────────────────────────
+   COMO FUNCIONA
+───────────────────────────────────── */
+.como__steps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 3rem; margin-top: 5rem;
+}
+.step__num {
+  font-family: var(--serif);
+  font-size: 3rem; font-weight: 400; color: var(--moss);   /* verde musgo nos números do método */
+  opacity: .35;
+  letter-spacing: -.02em; line-height: 1; margin-bottom: 1.5rem;
+  display: block;
+}
+.step__title {
+  font-size: .85rem; font-weight: 500; color: var(--ink);
+  margin-bottom: .5rem; letter-spacing: .01em;
+}
+.step__desc { font-size: .8rem; color: var(--mid); line-height: 1.75; font-weight: 300; }
+
+
+/* ─────────────────────────────────────
+   PARA QUEM
+───────────────────────────────────── */
+.paraquem__body {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 5rem; align-items: start;
+  margin-top: 3.5rem;
+}
+.paraquem__text {
+  font-size: .95rem; line-height: 1.9; color: var(--mid); font-weight: 300;
+}
+.paraquem__text + .paraquem__text { margin-top: 1.25rem; }
+.paraquem__list { padding-top: .25rem; }
+.paraquem__item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.paraquem__item:first-child { border-top: 1px solid var(--rule); }
+.paraquem__bullet {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--moss); flex-shrink: 0; margin-top: .55rem;  /* verde musgo nos bullets */
+}
+.paraquem__item-text {
+  font-size: .88rem; color: var(--mid); line-height: 1.75; font-weight: 300;
+}
+.paraquem__item-title {
+  font-size: .88rem; font-weight: 500; color: var(--moss); margin-bottom: .3rem;  /* verde musgo */
+}
+
+
+/* ─────────────────────────────────────
+   CTA FINAL
+───────────────────────────────────── */
+.cta-final {
+  padding: 7rem var(--side);
+  background: var(--moss);        /* verde musgo no CTA final */
+  text-align: center;
+}
+.cta-final__title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400; line-height: 1.18; letter-spacing: -.015em;
+  color: var(--white);            /* branco */
+  margin-bottom: 1.25rem; max-width: 680px; margin-left: auto; margin-right: auto;
+}
+.cta-final__sub {
+  font-size: .95rem; font-weight: 300; line-height: 1.8;
+  color: rgba(255,255,255,.65);   /* branco com opacidade */
+  max-width: 500px; margin: 0 auto 2.75rem;
+}
+/* Botão no CTA final: branco com texto verde */
+.cta-final .btn--primary {
+  color: var(--moss); background: var(--white);
+}
+.cta-final .btn--primary:hover { background: var(--off); }
+
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+.footer {
+  padding: 2.5rem var(--side);
+  border-top: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.25rem;
+}
+.footer__brand { }
+.footer__name {
+  font-size: .8rem; font-weight: 500; color: var(--ink);
+}
+.footer__role {
+  font-size: .72rem; color: var(--soft); margin-top: .15rem;
+  letter-spacing: .02em;
+}
+.footer__links {
+  display: flex; align-items: center; gap: 2rem;
+}
+.footer__links a {
+  font-size: .75rem; color: var(--soft); transition: color .2s;
+  letter-spacing: .02em;
+}
+.footer__links a:hover { color: var(--moss); }   /* hover verde musgo nos links do footer */
+.footer__city {
+  font-size: .72rem; color: var(--soft); letter-spacing: .02em;
+}
+
+
+/* ─────────────────────────────────────
+   FADE IN
+───────────────────────────────────── */
+.fade {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.fade.in { opacity: 1; transform: none; }
+.fade-d1 { transition-delay: .1s; }
+.fade-d2 { transition-delay: .2s; }
+.fade-d3 { transition-delay: .3s; }
+.fade-d4 { transition-delay: .4s; }
+
+
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav__links { display: none; flex-direction: column; gap: 0;
+    position: fixed; top: 56px; left: 0; right: 0;
+    background: rgba(255,255,255,.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule); padding: 1rem var(--side); z-index: 99; }
+  .nav__links.open { display: flex; }
+  .nav__links li { padding: .7rem 0; border-bottom: 1px solid var(--off); }
+  .nav__toggle { display: flex; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__left { padding: 4rem var(--side) 2.5rem; justify-self: auto; max-width: 100%; }
+  .hero__right { min-height: 55vw; }
+
+  .sobre__body { grid-template-columns: 1fr; gap: 2.5rem; }
+  .faco__grid { grid-template-columns: 1fr 1fr; }
+  .como__steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .paraquem__body { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .section { padding: 5rem 0; }
+}
+
+@media (max-width: 600px) {
+  .faco__grid { grid-template-columns: 1fr; }
+  .como__steps { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero__title { font-size: 2.2rem; }
+  .footer { flex-direction: column; text-align: center; }
+  .footer__links { justify-content: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─────────────────────── -->
+<nav class="nav" id="nav">
+  <span class="nav__logo">Daniela Sousa da Rocha</span>
+  <ul class="nav__links" id="navLinks">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#para-quem">Para quem</a></li>
+    <li><a href="#contato" class="nav__cta">Agendar conversa</a></li>
+  </ul>
+  <button class="nav__toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main>
+
+<!-- ─── HERO ─────────────────────── -->
+<header class="hero">
+  <div class="hero__left">
+    <p class="hero__eyebrow fade">Consultora em Estratégia Digital &amp; Marcas</p>
+    <h1 class="hero__title fade fade-d1">
+      Estratégia digital para marcas que levam resultado a sério.
+    </h1>
+    <p class="hero__sub fade fade-d2">
+      Daniela ajuda empresas a estruturarem seus processos de marketing digital — alinhando estratégia, operação e análise de resultados para que cada ação tenha direção e entregue o que promete.
+    </p>
+    <div class="hero__actions fade fade-d3">
+      <a href="#contato" class="btn--primary">Agendar uma conversa</a>
+      <a href="#metodo" class="btn--link">Entenda minha abordagem</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <img
+      class="hero__photo"
+      src="daniela-photo.png"
+      alt="Daniela Sousa da Rocha"
+    />
+  </div>
+</header>
+
+
+<!-- ─── SOBRE ─────────────────────── -->
+<section class="section" id="sobre">
+  <div class="wrap">
+    <div class="section__rule"></div>
+    <p class="section__label fade">Quem é Daniela</p>
+    <h2 class="section__title fade fade-d1">
+      Estrategista de marketing com visão de negócio e método.
+    </h2>
+
+    <div class="sobre__body">
+      <div>
+        <p class="sobre__p fade">
+          Formada em Marketing, Daniela construiu sua carreira na intersecção entre planejamento estratégico e operação de marketing — passando por agências de comunicação, empresas de tecnologia e instituições de ensino. Ao longo desse percurso, desenvolveu um perfil analítico e uma visão integrada do marketing que vai da estratégia à execução.
+        </p>
+        <p class="sobre__p fade fade-d1">
+          Hoje, como consultora independente, seu foco é organizar o marketing de empresas que já caminham, mas ainda sem clareza de processo, direção e indicadores de resultado. Ela constrói o método junto com o cliente — e acompanha cada etapa até que a estratégia funcione de forma consistente.
+        </p>
+      </div>
+      <div class="sobre__aside fade fade-d2">
+        <div class="sobre__fact">
+          <div class="sobre__fact-val">+5</div>
+          <div class="sobre__fact-label">Anos de experiência em marketing</div>
+        </div>
+        <div class="sobre__fact">
+          <div class="sobre__fact-val">360°</div>
+          <div class="sobre__fact-label">Visão de estratégia à operação</div>
+        </div>
+        <div class="sobre__fact">
+          <div class="sobre__fact-val">PMEs</div>
+          <div class="sobre__fact-label">Foco de atuação</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── O QUE EU FAÇO ─────────────── -->
+<section class="section section--off" id="servicos">
+  <div class="wrap">
+    <div class="section__rule"></div>
+    <p class="section__label fade">O que eu faço</p>
+    <h2 class="section__title fade fade-d1">Consultoria em Estratégia Digital &amp; Marcas</h2>
+    <p class="faco__sub fade fade-d2">
+      Não é gestão de redes sociais. É a direção estratégica que organiza o marketing, define prioridades e faz as ações gerarem resultado de verdade.
+    </p>
+
+    <div class="faco__grid">
+      <div class="faco__item fade fade-d1">
+        <span class="faco__num">01</span>
+        <div class="faco__item-title">Estratégia de Marketing Digital</div>
+        <p class="faco__item-desc">Posicionamento, canais, objetivos e prioridades definidos com clareza para gerar resultado consistente.</p>
+      </div>
+      <div class="faco__item fade fade-d2">
+        <span class="faco__num">02</span>
+        <div class="faco__item-title">Estruturação de Processos</div>
+        <p class="faco__item-desc">Fluxos de trabalho, rotinas e responsabilidades organizados para que o time execute com consistência.</p>
+      </div>
+      <div class="faco__item fade fade-d3">
+        <span class="faco__num">03</span>
+        <div class="faco__item-title">Planejamento e Direção de Conteúdo</div>
+        <p class="faco__item-desc">Calendário estratégico alinhado aos objetivos do negócio e ao momento da marca — não apenas uma grade de posts.</p>
+      </div>
+      <div class="faco__item fade fade-d4">
+        <span class="faco__num">04</span>
+        <div class="faco__item-title">Análise de Métricas e Otimização</div>
+        <p class="faco__item-desc">Indicadores relevantes, leitura de dados e ajustes contínuos para que as decisões sejam baseadas em evidência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── COMO FUNCIONA ─────────────── -->
+<section class="section" id="metodo">
+  <div class="wrap">
+    <div class="section__rule"></div>
+    <p class="section__label fade">Método de trabalho</p>
+    <h2 class="section__title fade fade-d1">Como eu trabalho</h2>
+
+    <div class="como__steps">
+      <div class="fade fade-d1">
+        <span class="step__num">01</span>
+        <div class="step__title">Diagnóstico</div>
+        <p class="step__desc">Entendo o cenário atual da empresa — canais, processos, indicadores e desafios reais — antes de propor qualquer solução.</p>
+      </div>
+      <div class="fade fade-d2">
+        <span class="step__num">02</span>
+        <div class="step__title">Direção Estratégica</div>
+        <p class="step__desc">Defino posicionamento, objetivos e prioridades com base no diagnóstico. O foco é clareza, não quantidade de ações.</p>
+      </div>
+      <div class="fade fade-d3">
+        <span class="step__num">03</span>
+        <div class="step__title">Plano de Ação</div>
+        <p class="step__desc">Organizo calendário, processos e responsáveis em um plano prático que o time consegue executar com consistência.</p>
+      </div>
+      <div class="fade fade-d4">
+        <span class="step__num">04</span>
+        <div class="step__title">Acompanhamento</div>
+        <p class="step__desc">Revisão periódica de métricas, ajuste de rota e otimização contínua — para que a estratégia se mantenha funcionando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── PARA QUEM ─────────────────── -->
+<section class="section section--off" id="para-quem">
+  <div class="wrap">
+    <div class="section__rule"></div>
+    <p class="section__label fade">Para quem é</p>
+    <h2 class="section__title fade fade-d1">Para quem é a minha consultoria</h2>
+
+    <div class="paraquem__body">
+      <div>
+        <p class="paraquem__text fade">
+          Minha consultoria é para empresas que já fazem algo em marketing, mas sentem que estão investindo tempo e dinheiro sem clareza de retorno. Que estão "fazendo muito, mas sem saber o que realmente entrega resultado".
+        </p>
+        <p class="paraquem__text fade fade-d1" style="margin-top:1.25rem;">
+          São negócios que precisam de um olhar estratégico de fora — alguém que organize o que já existe, identifique as lacunas e construa um caminho com método, direção e foco em resultado mensurável.
+        </p>
+      </div>
+      <div class="paraquem__list fade fade-d2">
+        <div class="paraquem__item">
+          <span class="paraquem__bullet"></span>
+          <div>
+            <div class="paraquem__item-title">Pequenas e médias empresas</div>
+            <p class="paraquem__item-text">Que fazem marketing mas sem estrutura, processo ou clareza de indicadores.</p>
+          </div>
+        </div>
+        <div class="paraquem__item">
+          <span class="paraquem__bullet"></span>
+          <div>
+            <div class="paraquem__item-title">Negócios em crescimento</div>
+            <p class="paraquem__item-text">Que precisam organizar sua operação de marketing antes de escalar.</p>
+          </div>
+        </div>
+        <div class="paraquem__item">
+          <span class="paraquem__bullet"></span>
+          <div>
+            <div class="paraquem__item-title">Times de marketing sem direção estratégica</div>
+            <p class="paraquem__item-text">Equipes que executam bem, mas precisam de alguém que pense o todo e conecte as ações ao resultado.</p>
+          </div>
+        </div>
+        <div class="paraquem__item">
+          <span class="paraquem__bullet"></span>
+          <div>
+            <div class="paraquem__item-title">Fundadores que fazem o marketing sozinhos</div>
+            <p class="paraquem__item-text">Que precisam de método para parar de improvisar e construir presença com consistência.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── CTA FINAL ─────────────────── -->
+<section class="cta-final" id="contato">
+  <h2 class="cta-final__title fade">
+    Pronto para estruturar seu marketing com estratégia?
+  </h2>
+  <p class="cta-final__sub fade fade-d1">
+    Começamos com uma conversa de diagnóstico. Sem compromisso. Em 30 minutos você já entende o que pode mudar no seu marketing.
+  </p>
+  <div class="fade fade-d2">
+    <a href="mailto:daniela@email.com.br" class="btn--primary">Agendar conversa estratégica</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ─── FOOTER ─────────────────────── -->
+<footer class="footer">
+  <div class="footer__brand">
+    <div class="footer__name">Daniela Sousa da Rocha</div>
+    <div class="footer__role">Consultora em Estratégia Digital &amp; Marcas</div>
+  </div>
+  <div class="footer__links">
+    <a href="mailto:daniela@email.com.br">daniela@email.com.br</a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="footer__city">Vitória da Conquista — BA</div>
+</footer>
+
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 10 ? 'var(--rule)' : 'transparent';
+  }, { passive: true });
+
+  // Mobile nav
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Fade on scroll
+  const fades = document.querySelectorAll('.fade');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  fades.forEach(el => obs.observe(el));
+
+  // Trigger hero immediately
+  document.querySelectorAll('.hero .fade, .hero .hero__eyebrow').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 80 + i * 120);
+  });
+</script>
+</body>
+</html>
